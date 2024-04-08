@@ -74,3 +74,9 @@
     box-shadow: 0.2em -0.2em 0 0 currentcolor;
   }
 }
+
+@layer components {
+  .btn {
+    @apply my-6 block scale-100  border-none bg-orange-500 px-4 py-2 text-sm font-semibold uppercase text-slate-800 shadow-sm  transition-all duration-150 ease-in hover:scale-110 hover:bg-orange-600 focus:outline-none focus:ring-1 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-slate-700;
+  }
+}

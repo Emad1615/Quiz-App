@@ -15,6 +15,13 @@ function reducer(state = initialState, action) {
       return { ...state, questions: action.payload, status: "ready" };
     case "question/Failed":
       return { ...state, error: action.payload, states: "error" };
+    case "question/StartQuiz":
+      return { ...state, status: "active" };
+    case "question/setAnswer":
+      // const question = state.question.at(state.index);
+      return { ...state, answer: action.payload };
+    case "question/nextQuestion":
+      return { ...state, index: state.index + 1, answer: null };
     default:
       throw Error("undefined action");
   }
@@ -49,6 +56,7 @@ export default function QuizProvider({ children }) {
         status,
         point,
         secondRemaining,
+        dispatch,
       }}
     >
       {children}
