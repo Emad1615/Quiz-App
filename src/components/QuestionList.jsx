@@ -7,8 +7,8 @@ function QuestionList() {
   console.log(status);
   console.log(index);
   return (
-    <div>
-      <ul>
+    <div className="space-y-5">
+      <ul className="flex items-center justify-center">
         <Question questionData={questions.at(index)} key={index} />
       </ul>
       <div className="my-10 flex justify-between">
