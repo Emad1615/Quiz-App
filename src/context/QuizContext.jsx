@@ -18,8 +18,15 @@ function reducer(state = initialState, action) {
     case "question/StartQuiz":
       return { ...state, status: "active" };
     case "question/setAnswer":
-      // const question = state.question.at(state.index);
-      return { ...state, answer: action.payload };
+      const question = state.questions.at(state.index);
+      return {
+        ...state,
+        answer: action.payload,
+        point:
+          question.correctOption === action.payload
+            ? state.point + question.points
+            : state.point,
+      };
     case "question/nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
     default:
@@ -31,7 +38,7 @@ export default function QuizProvider({ children }) {
   const [states, dispatch] = useReducer(reducer, initialState);
   const { questions, index, status, answer, point, secondRemaining } = states;
   const questionLength = questions.length;
-
+  const highScorePoints = questions.reduce((sum, arr) => sum + arr.points, 0);
   useEffect(() => {
     fetch("http://localhost:80/questions")
       .then((res) => res.json())
@@ -55,6 +62,7 @@ export default function QuizProvider({ children }) {
         answer,
         status,
         point,
+        highScorePoints,
         secondRemaining,
         dispatch,
       }}

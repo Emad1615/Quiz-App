@@ -1,10 +1,8 @@
 import { useQuiz } from "../context/QuizContext";
 
 function Options({ option, idx, correctOption }) {
-  const { dispatch, answer } = useQuiz();
+  const { dispatch, answer, questions } = useQuiz();
   const hasAnswer = answer !== null;
-  console.log(idx + "--" + correctOption);
-
   return (
     <button
       disabled={hasAnswer}
