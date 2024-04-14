@@ -13,7 +13,7 @@ function Question({ questionData }) {
         {options.map((option, idx) => (
           <Options
             option={option}
-            index={idx}
+            idx={idx}
             key={idx}
             correctOption={correctOption}
           />

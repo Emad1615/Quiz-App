@@ -4,8 +4,6 @@ import Question from "./Question";
 
 function QuestionList() {
   const { questions, index, dispatch, status } = useQuiz();
-  console.log(status);
-  console.log(index);
   return (
     <div className="space-y-5">
       <ul className="flex items-center justify-center">
