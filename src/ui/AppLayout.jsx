@@ -1,6 +1,7 @@
 import ProgressBarResult from "../components/ProgressBarResult";
 import QuestionList from "../components/QuestionList";
 import { useQuiz } from "../context/QuizContext";
+import FinishPage from "./FinishPage";
 import Loader from "./Loader";
 import StartPage from "./StartPage";
 
@@ -14,10 +15,10 @@ function AppLayout() {
       {status === "active" && (
         <>
           <ProgressBarResult />
-
           <QuestionList />
         </>
       )}
+      {status === "finished" && <FinishPage />}
     </div>
   );
 }
