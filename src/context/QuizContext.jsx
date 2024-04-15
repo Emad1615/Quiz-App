@@ -19,12 +19,15 @@ function reducer(state, action) {
         questions: action.payload,
         status: "ready",
         questionLength: action.payload.length,
-        secondsRemaining: action.payload.length * SECOND_PER_QUESTION,
       };
     case "question/Failed":
       return { ...state, error: action.payload, states: "error" };
     case "question/StartQuiz":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.questions.length * SECOND_PER_QUESTION,
+      };
     case "question/setAnswer":
       const question = state.questions.at(state.index);
       return {
