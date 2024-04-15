@@ -18,7 +18,7 @@ function AppLayout() {
           <QuestionList />
         </>
       )}
-      {status === "finished" && <FinishPage />}
+      {status === "finish" && <FinishPage />}
     </div>
   );
 }

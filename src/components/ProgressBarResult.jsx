@@ -1,8 +1,8 @@
 import { useQuiz } from "../context/QuizContext";
 
 function ProgressBarResult() {
-  const { questionLength, index, point, highScorePoints } = useQuiz();
-  const percentagePoints = (point / highScorePoints) * 100;
+  const { questionLength, index, point, highScorePoints, pointsPercentage } =
+    useQuiz();
   return (
     <div className="w-full space-y-1">
       <progress
@@ -12,7 +12,7 @@ function ProgressBarResult() {
       ></progress>
       <div className="flex  w-full justify-between ">
         <p>{`${index + 1} / ${questionLength}`}</p>
-        <p>{percentagePoints.toFixed(0)}%</p>
+        <p>{pointsPercentage.toFixed(0)}%</p>
       </div>
     </div>
   );

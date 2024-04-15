@@ -16,7 +16,7 @@ function NextButton() {
       ) : (
         <button
           className="scale-100 bg-orange-500 px-6 py-1 uppercase transition-all duration-300 ease-out hover:scale-110 hover:bg-orange-600 focus:outline-none focus:ring-1 focus:ring-orange-500 focus:ring-offset-1 focus:ring-offset-slate-700"
-          onClick={() => alert()}
+          onClick={() => dispatch({ type: "question/finishQuiz" })}
         >
           Finish
         </button>
