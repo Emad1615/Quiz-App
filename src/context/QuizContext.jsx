@@ -7,9 +7,10 @@ const initialState = {
   status: "loading",
   answer: null,
   point: 0,
-  secondRemaining: 0,
+  secondsRemaining: null,
   error: "",
 };
+const SECOND_PER_QUESTION = 30;
 function reducer(state = initialState, action) {
   switch (action.type) {
     case "question/getQuestions":
@@ -18,6 +19,7 @@ function reducer(state = initialState, action) {
         questions: action.payload,
         status: "ready",
         questionLength: action.payload.length,
+        secondsRemaining: action.payload.length * SECOND_PER_QUESTION,
       };
     case "question/Failed":
       return { ...state, error: action.payload, states: "error" };
@@ -44,6 +46,15 @@ function reducer(state = initialState, action) {
         status: "ready",
         questionLength: state.questionLength,
       };
+    case "question/tick":
+      return {
+        ...state,
+        secondsRemaining:
+          state.secondsRemaining > 0
+            ? state.secondsRemaining - 1
+            : state.secondsRemaining,
+        status: state.secondsRemaining === 0 ? "finish" : state.status,
+      };
     default:
       throw Error("undefined action");
   }
@@ -58,7 +69,7 @@ export default function QuizProvider({ children }) {
     status,
     answer,
     point,
-    secondRemaining,
+    secondsRemaining,
   } = states;
   const highScorePoints = questions.reduce((sum, arr) => sum + arr.points, 0);
   const pointsPercentage = (point / highScorePoints) * 100;
@@ -102,8 +113,8 @@ export default function QuizProvider({ children }) {
         highScorePoints,
         point,
         pointsPercentage,
+        secondsRemaining,
         letterGrade,
-        secondRemaining,
         dispatch,
       }}
     >
