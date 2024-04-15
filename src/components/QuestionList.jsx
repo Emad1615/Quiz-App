@@ -10,10 +10,6 @@ function QuestionList() {
       <ul className="flex items-center justify-center">
         <Question questionData={questions.at(index)} key={index} />
       </ul>
-      <div className="my-10 flex justify-between">
-        <Timer />
-        <NextButton />
-      </div>
     </div>
   );
 }

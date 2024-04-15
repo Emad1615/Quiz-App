@@ -11,7 +11,7 @@ const initialState = {
   error: "",
 };
 const SECOND_PER_QUESTION = 30;
-function reducer(state = initialState, action) {
+function reducer(state, action) {
   switch (action.type) {
     case "question/getQuestions":
       return {

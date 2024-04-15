@@ -1,5 +1,7 @@
+import NextButton from "../components/NextButton";
 import ProgressBarResult from "../components/ProgressBarResult";
 import QuestionList from "../components/QuestionList";
+import Timer from "../components/Timer";
 import { useQuiz } from "../context/QuizContext";
 import FinishPage from "./FinishPage";
 import Loader from "./Loader";
@@ -16,6 +18,10 @@ function AppLayout() {
         <>
           <ProgressBarResult />
           <QuestionList />
+          <div className="my-10 flex w-full justify-between">
+            <Timer />
+            <NextButton />
+          </div>
         </>
       )}
       {status === "finish" && <FinishPage />}
