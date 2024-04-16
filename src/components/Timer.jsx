@@ -10,10 +10,13 @@ function Timer() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch({ type: "question/tick" });
-      sound.play();
+      //   sound.play();
     }, [1000]);
     return () => clearInterval(intervalId);
   }, [dispatch]);
+  useEffect(() => {
+    if (secondsRemaining <= 60) sound.play();
+  }, [secondsRemaining]);
   return (
     <label className="border px-3 py-1">{`${minutes > 10 ? minutes : "0" + minutes}:${seconds > 10 ? seconds : "0" + seconds}`}</label>
   );
